@@ -40,7 +40,7 @@ class HomeVC: UIViewController {
         homeFeedTableView.dataSource = self
         
         // adding hero image heder for the table view
-        headerView = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        headerView = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 350))
         homeFeedTableView.tableHeaderView = headerView
         
         // calling func for a logo and profile nav bar item
