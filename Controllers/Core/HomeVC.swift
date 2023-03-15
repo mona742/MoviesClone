@@ -65,17 +65,26 @@ class HomeVC: UIViewController {
     
     private func configerNavBar() {
         
-        var image = UIImage(named: "newLogo")
-        // to alwys keep the orginal image color
-        image = image?.withRenderingMode(.alwaysOriginal)
-                // ظهرت مشكلة في مكان اظهار اللوقو يحتاج لبحث
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
+        // to always keep the orginal image color
+//        image = image?.withRenderingMode(.alwaysOriginal)
+        
+        let leftNavBarImageView = UIImageView()
+            leftNavBarImageView.image = UIImage(named: "movieIcon")
+            leftNavBarImageView.contentMode = .scaleAspectFill
+            leftNavBarImageView.clipsToBounds = true
+            leftNavBarImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true // set inage view width constraint
+            leftNavBarImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true // set inage view height constraint
+            navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftNavBarImageView) // add left bar nutton custom view
+        
         // adding nav bar button for play and profile
         navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(image: UIImage(systemName: "person"), style: .done, target: self, action: nil),
-            UIBarButtonItem(image: UIImage(systemName: "play.rectangle"), style: .done, target: self, action: nil)
+            UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: nil),
+            UIBarButtonItem(image: UIImage(systemName: "play.rectangle"), style: .plain, target: self, action: nil)
         ]
+        
         navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.contentMode = .scaleAspectFit
+        navigationController?.navigationBar.clipsToBounds = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -97,10 +106,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        //        cell.textLabel?.text = "oh yeeeeah"
-        //        return cell
-        
+
         // creating the table with custom cell without error
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifeir, for: indexPath) as? CollectionViewTableViewCell else {
             return UITableViewCell()

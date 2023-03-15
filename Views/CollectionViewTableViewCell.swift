@@ -112,31 +112,18 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
             }
         }
     }
-    //it a function for downloading the title
-    // need to be fixed, not working
-//    private func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-//        let configuer = UIContextMenuConfiguration(
-//        identifier: nil,
-//        previewProvider: nil) { [weak self] _ in
-//            let downloadAction = UIAction(title: "Download", subtitle: nil, image: nil, identifier: nil, discoverabilityTitle: nil, state: .on) { _ in
-//                self?.downloadTitleAt(indexPath: indexPath)
-//            }
-//            return UIMenu(title: "",image: nil, identifier: nil, options: .singleSelection, children: [downloadAction])
-//        }
-//        return configuer
-//    }
     
+    //it a function for downloading the title trailer
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-//        configureContextMenu(index: indexPath.row)
         
     let context = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (action) -> UIMenu? in
             
-        let downloadAction = UIAction(title: "Yes,download", image: UIImage(systemName: "arrowtriangle.down.circle"), identifier: nil, discoverabilityTitle: nil, state: .off) { [weak self] (_) in
+        let downloadAction = UIAction(title: "Yes", image: nil, identifier: nil, discoverabilityTitle: nil, state: .off) { [weak self] (_) in
             self?.downloadTitleAt(indexPath: indexPath)
                 print("downloaded")
             }
             
-            return UIMenu(title: "Do you want to download this trailer?", image: nil, identifier: nil, options: UIMenu.Options.displayInline, children: [downloadAction])
+        return UIMenu(title: "Download this trailer?", image: nil, identifier: nil, options: UIMenu.Options.displayInline, children: [downloadAction])
             
         }
         return context
